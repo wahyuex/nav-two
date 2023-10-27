@@ -1,5 +1,3 @@
-import Button from "./Button";
-import Header from "./Header";
-import Separator from "./Separator";
+import Header from "./header";
 
-export { Button, Header, Separator };
+export{Header};
