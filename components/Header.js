@@ -5,7 +5,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "expo-router";
 
-const Header = ({ title, withBack = false }) => {
+const Header = ({ title, withBack = false, withClose = false }) => {
   const trueGray900 = "#171717";
   const navigation = useNavigation();
   return (
@@ -22,6 +22,7 @@ const Header = ({ title, withBack = false }) => {
                   h="$12"
                   alt="CNN Logo"
                   mr={"$3"}
+                  role="img"
                 />
               </>
             ) : (
@@ -43,24 +44,28 @@ const Header = ({ title, withBack = false }) => {
               w="$5"
               h="$5"
               alt="Facebook Icon"
+              role="img"
             />
             <Image
               source={require("../assets/youtube.png")}
               w="$5"
               h="$5"
               alt="Facebook Icon"
+              role="img"
             />
             <Image
               source={require("../assets/twitter.png")}
               w="$5"
               h="$5"
               alt="Facebook Icon"
+              role="img"
             />
             <Image
               source={require("../assets/search.png")}
               w="$5"
               h="$5"
               alt="Search Icon"
+              role="img"
             />
           </HStack>
         </HStack>

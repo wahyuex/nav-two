@@ -1,31 +1,50 @@
-import { Heading, Text, Center,Image,Divider } from "@gluestack-ui/themed";
+import {
+  Box,
+  Heading,
+  Text,
+  Image,
+  Divider,
+  ScrollView,
+  Button,
+  ButtonText,
+} from "@gluestack-ui/themed";
 import { Header } from "../components";
-import { useLocalSearchParams } from "expo-router";
-import { SafeAreaView, ScrollView } from "react-native";
-// import { Image } from "expo-image";
+import { Link, useLocalSearchParams } from "expo-router";
+import { format } from "date-fns";
 
 const NewsDetail = () => {
   const params = useLocalSearchParams();
   return (
     <>
-      <SafeAreaView>
-        <ScrollView>
-          <Header title={"News"} withBack={true} />
-          <Center flex={1} padding={"$4"}>      
-            <Heading>News Detail</Heading>
-            <Image
-          width="$full"  height={150} marginTop={10} borderRadius="$none" 
-            source={{
-                uri: params.image,
-              }}
-          />
-            <Text paddingRight={230} fontWeight="$bold" paddingVertical={20}>{params.date}</Text>
-            <Text textAlign="justify" paddingRight={30} fontWeight="$extrabold" fontSize={23}>{params.title}</Text>
-            <Divider marginVertical={10}/>
-            <Text textAlign="justify">{params.content}</Text>
-          </Center>
-        </ScrollView>
-      </SafeAreaView>
+      <Header title={"News"} withBack={true} />
+      <ScrollView>
+        <Image
+          source={{ uri: params.image }}
+          w={"$full"}
+          h={"$48"}
+          alt="News Image"
+          role="img"
+        />
+        <Box p={"$4"}>
+          <Text mb={"$1"}>{format(new Date(params.date), "dd MMMM yyyy")}</Text>
+          <Heading lineHeight={"$xl"} fontSize={"$2xl"}>
+            {params.title}
+          </Heading>
+          <Divider my={"$4"} />
+          <Text marginBottom={"$4"}>{params.desc}</Text>
+          <Link
+            href={{
+              pathname: "/web",
+              params: { link: params.link },
+            }}
+            asChild
+          >
+            <Button backgroundColor="$red700" borderRadius={"$full"}>
+              <ButtonText>Read More</ButtonText>
+            </Button>
+          </Link>
+        </Box>
+      </ScrollView>
     </>
   );
 };
